@@ -2,11 +2,14 @@ package com.qnaserver.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
 public class Question {
     @Id
@@ -27,6 +30,8 @@ public class Question {
 
     @Enumerated(EnumType.STRING)
     private PublicSecret publicSecret;
+
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     public enum QuestionStatus {
         QUESTION_REGISTRATION("질문 등록 상태"),
