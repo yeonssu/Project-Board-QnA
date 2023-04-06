@@ -2,11 +2,13 @@ package com.qnaserver.dto;
 
 import com.qnaserver.entity.Member;
 import com.qnaserver.entity.Question;
+import com.qnaserver.entity.Reply;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 public class QuestionDto {
@@ -41,6 +43,8 @@ public class QuestionDto {
         private Question.PublicSecret publicSecret;
 
         private LocalDateTime createdAt;
+
+        private List<Reply> replies;
     }
 
     @Getter

@@ -27,6 +27,7 @@ public class QuestionMapper {
         response.setQuestionStatus(question.getQuestionStatus());
         response.setPublicSecret(question.getPublicSecret());
         response.setCreatedAt(question.getCreatedAt());
+        response.setReplies(question.getReplies());
 
         return response;
     }

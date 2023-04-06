@@ -6,6 +6,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -30,6 +32,13 @@ public class Question {
 
     @Enumerated(EnumType.STRING)
     private PublicSecret publicSecret;
+
+    @OneToMany(mappedBy = "question")
+    private List<Reply> replies = new ArrayList<>();
+
+    public void addReply (Reply reply) {
+        this.replies.add(reply);
+    }
 
     private LocalDateTime createdAt = LocalDateTime.now();
 
