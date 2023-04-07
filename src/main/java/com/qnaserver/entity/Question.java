@@ -1,5 +1,7 @@
 package com.qnaserver.entity;
 
+import com.qnaserver.enums.PublicSecret;
+import com.qnaserver.enums.QuestionStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -41,28 +43,5 @@ public class Question {
     }
 
     private LocalDateTime createdAt = LocalDateTime.now();
-
-    public enum QuestionStatus {
-        QUESTION_REGISTRATION("질문 등록 상태"),
-        QUESTION_ANSWERED("답변 완료 상태"),
-        QUESTION_DELETE("질문 삭제 상태");
-
-        private String status;
-
-        QuestionStatus(String status) {
-            this.status = status;
-        }
-    }
-
-    public enum PublicSecret {
-        PUBLIC("공개글 상태"),
-        SECRET("비밀글 상태");
-
-        private String status;
-
-        PublicSecret(String status) {
-            this.status = status;
-        }
-    }
 
 }

@@ -5,6 +5,9 @@ import com.qnaserver.entity.Member;
 import com.qnaserver.entity.Question;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class QuestionMapper {
     public Question questionPostToQuestion(QuestionDto.Post questionPostDto, Member member) {
@@ -41,5 +44,18 @@ public class QuestionMapper {
         question.setPublicSecret(questionPatchDto.getPublicSecret());
 
         return question;
+    }
+
+    public List<QuestionDto.Response> questionListToQuestionResponse(List<Question> allQuestion) {
+        List<QuestionDto.Response> responseList = new ArrayList<>();
+
+//        for (Question question : allQuestion) {
+//            if (!question.getQuestionStatus().equals(Question.QuestionStatus.QUESTION_DELETE)) responseList.add(questionToQuestionResponse(question));
+//        }
+
+        for (Question question : allQuestion) {
+            responseList.add(questionToQuestionResponse(question));
+        }
+        return responseList;
     }
 }

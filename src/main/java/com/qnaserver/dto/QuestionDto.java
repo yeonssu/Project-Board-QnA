@@ -1,8 +1,8 @@
 package com.qnaserver.dto;
 
-import com.qnaserver.entity.Member;
-import com.qnaserver.entity.Question;
+import com.qnaserver.enums.PublicSecret;
 import com.qnaserver.entity.Reply;
+import com.qnaserver.enums.QuestionStatus;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,7 +24,7 @@ public class QuestionDto {
         @NotBlank
         private String memberEmail;
 
-        private Question.PublicSecret publicSecret;
+        private PublicSecret publicSecret;
     }
 
     @Getter
@@ -38,9 +38,9 @@ public class QuestionDto {
 
         private String memberEmail;
 
-        private Question.QuestionStatus questionStatus;
+        private QuestionStatus questionStatus;
 
-        private Question.PublicSecret publicSecret;
+        private PublicSecret publicSecret;
 
         private LocalDateTime createdAt;
 
@@ -59,8 +59,8 @@ public class QuestionDto {
         @NotBlank
         private String memberEmail;
 
-        private Question.PublicSecret publicSecret;
+        private PublicSecret publicSecret;
 
-        private Question.QuestionStatus questionStatus;
+        private QuestionStatus questionStatus;
     }
 }

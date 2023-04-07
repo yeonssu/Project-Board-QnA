@@ -1,6 +1,6 @@
 package com.qnaserver.dto;
 
-import com.qnaserver.entity.Member;
+import com.qnaserver.enums.Role;
 import lombok.*;
 
 public class MemberDto {
@@ -29,6 +29,6 @@ public class MemberDto {
         private long memberId;
         private String email;
         private String name;
-        private Member.Role role;
+        private Role role;
     }
 }

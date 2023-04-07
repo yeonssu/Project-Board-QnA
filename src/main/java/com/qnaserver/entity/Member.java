@@ -1,5 +1,6 @@
 package com.qnaserver.entity;
 
+import com.qnaserver.enums.Role;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,9 +28,5 @@ public class Member {
 
     @Enumerated(EnumType.STRING)
     private Role role = Role.USER;
-
-    public enum Role {
-        USER, ADMIN
-    }
 
 }
