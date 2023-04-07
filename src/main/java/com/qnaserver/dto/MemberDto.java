@@ -16,14 +16,6 @@ public class MemberDto {
     @Getter
     @Setter
     @NoArgsConstructor
-    public static class Login {
-        private String email;
-        private String password;
-    }
-
-    @Getter
-    @Setter
-    @NoArgsConstructor
     @AllArgsConstructor
     public static class Response {
         private long memberId;

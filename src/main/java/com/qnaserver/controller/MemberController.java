@@ -22,9 +22,4 @@ public class MemberController {
     public ResponseEntity<MemberDto.Response> createMember(@RequestBody MemberDto.Post memberPostDto) {
         return new ResponseEntity<>(memberService.createMember(memberPostDto), HttpStatus.CREATED);
     }
-
-//    @PostMapping
-//    public ResponseEntity<> loginMember(@RequestBody MemberDto.Login memberLoginDto){
-//        return new ResponseEntity<>(memberService.login(memberLoginDto));
-//    }
 }
