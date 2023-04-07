@@ -8,8 +8,6 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
-import java.util.List;
-
 
 public class QuestionDto {
     @Getter
@@ -44,7 +42,7 @@ public class QuestionDto {
 
         private LocalDateTime createdAt;
 
-        private List<Reply> replies;
+        private Reply reply;
     }
 
     @Getter

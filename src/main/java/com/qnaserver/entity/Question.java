@@ -35,12 +35,9 @@ public class Question {
     @Enumerated(EnumType.STRING)
     private PublicSecret publicSecret;
 
-    @OneToMany(mappedBy = "question")
-    private List<Reply> replies = new ArrayList<>();
-
-    public void addReply (Reply reply) {
-        this.replies.add(reply);
-    }
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "REPLY_ID")
+    private Reply reply;
 
     private LocalDateTime createdAt = LocalDateTime.now();
 
