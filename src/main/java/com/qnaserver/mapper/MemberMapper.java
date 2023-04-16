@@ -22,7 +22,19 @@ public class MemberMapper {
         response.setMemberId(member.getMemberId());
         response.setEmail(member.getEmail());
         response.setName(member.getName());
-        response.setRole(member.getRole());
+        response.setRoles(member.getRoles());
+
+        return response;
+    }
+
+    public MemberDto.TokenResponse memberToMemberTokenResponseDto(Member member, String token) {
+        MemberDto.TokenResponse response = new MemberDto.TokenResponse();
+
+        response.setMemberId(member.getMemberId());
+        response.setEmail(member.getEmail());
+        response.setName(member.getName());
+        response.setRoles(member.getRoles());
+        response.setToken(token);
 
         return response;
     }

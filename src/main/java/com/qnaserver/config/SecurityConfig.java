@@ -29,8 +29,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 // request 에 대한 인증 및 권한 부여 설정
                 .authorizeRequests()
-                .antMatchers("/sign-up", "/sign-in", "/admin").permitAll()
+                .antMatchers("/members/signup", "/members/signin").permitAll()
                 .antMatchers("**exception**").permitAll()
+                .antMatchers("/questions/**").hasRole("USER")
                 .antMatchers("/reply/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()

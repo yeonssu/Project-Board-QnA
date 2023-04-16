@@ -30,13 +30,18 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         // request 로 부터 token 값 추출
         String token = jwtTokenProvider.resolveToken(request);
         LOGGER.info("[doFilterInternal] token 값 추출 완료. token : {}", token);
+        if (token != null) {
+            token = token.replace("Bearer", "");
+        }
 
         // token 값 유효성 검사
         LOGGER.info("[doFilterInternal] token 값 유효성 체크 시작");
-        if (token != null && jwtTokenProvider.validateToken(token)) {
+        if (jwtTokenProvider.validateToken(token)) {
             Authentication authentication = jwtTokenProvider.getAuthentication(token);
             SecurityContextHolder.getContext().setAuthentication(authentication);
             LOGGER.info("[doFilterInternal] token 값 유효성 체크 완료");
+        } else {
+            LOGGER.info("[doFilterInternal] token 값 유효성 체크 실패");
         }
 
         // 다음 필터로 이동
