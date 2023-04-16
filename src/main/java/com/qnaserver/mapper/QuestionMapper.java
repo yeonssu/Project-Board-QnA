@@ -10,10 +10,9 @@ import java.util.List;
 
 @Component
 public class QuestionMapper {
-    public Question questionPostToQuestion(QuestionDto.Post questionPostDto, Member member) {
+    public Question questionPostToQuestion(QuestionDto.Post questionPostDto) {
         Question question = new Question();
         question.setTitle(questionPostDto.getTitle());
-        question.setMember(member);
         question.setContent(questionPostDto.getContent());
         question.setPublicSecret(questionPostDto.getPublicSecret());
 
@@ -23,7 +22,6 @@ public class QuestionMapper {
     public QuestionDto.Response questionToQuestionResponse(Question question) {
         QuestionDto.Response response = new QuestionDto.Response();
 
-        response.setMemberEmail(question.getMember().getEmail());
         response.setQuestionId(question.getQuestionId());
         response.setTitle(question.getTitle());
         response.setContent(question.getContent());

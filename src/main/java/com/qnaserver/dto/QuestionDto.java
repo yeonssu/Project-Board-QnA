@@ -19,9 +19,6 @@ public class QuestionDto {
         @NotBlank
         private String content;
 
-        @NotBlank
-        private String memberEmail;
-
         private PublicSecret publicSecret;
     }
 
@@ -33,8 +30,6 @@ public class QuestionDto {
         private String title;
 
         private String content;
-
-        private String memberEmail;
 
         private QuestionStatus questionStatus;
 
@@ -53,9 +48,6 @@ public class QuestionDto {
         private String title;
 
         private String content;
-
-        @NotBlank
-        private String memberEmail;
 
         private PublicSecret publicSecret;
 

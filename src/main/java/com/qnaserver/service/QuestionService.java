@@ -31,11 +31,7 @@ public class QuestionService {
     }
 
     public QuestionDto.Response createQuestion(QuestionDto.Post questionPostDto) {
-        String email = questionPostDto.getMemberEmail();
-        Optional<Member> optionalMember = memberRepository.findByEmail(email);
-
-        Member findMember = optionalMember.orElseThrow(() -> new RuntimeException("등록된 회원이 아닙니다."));
-        Question question = mapper.questionPostToQuestion(questionPostDto, findMember);
+        Question question = mapper.questionPostToQuestion(questionPostDto);
         Question save = questionRepository.save(question);
         return mapper.questionToQuestionResponse(save);
     }
@@ -47,15 +43,13 @@ public class QuestionService {
         Optional<Question> optionalQuestion = questionRepository.findById(questionId);
         Question findQuestion = optionalQuestion.orElseThrow(() -> new RuntimeException("게시물이 등록되어있지 않습니다."));
 
-        if (!questionPatchDto.getMemberEmail().equals(ADMIN_EMAIL)) {
-            if (findQuestion.getQuestionStatus().equals(QuestionStatus.QUESTION_ANSWERED)) {
-                throw new RuntimeException("답변 완료 상태의 질문은 수정할 수 없습니다.");
-            }
-
-            if (findQuestion.getQuestionStatus().equals(QuestionStatus.QUESTION_DELETE)) {
-                throw new RuntimeException("이미 삭제한 질문은 수정/삭제할 수 없습니다.");
-            }
-        }
+//        if (findQuestion.getQuestionStatus().equals(QuestionStatus.QUESTION_ANSWERED)) {
+//            throw new RuntimeException("답변 완료 상태의 질문은 수정할 수 없습니다.");
+//        }
+//
+//        if (findQuestion.getQuestionStatus().equals(QuestionStatus.QUESTION_DELETE)) {
+//            throw new RuntimeException("이미 삭제한 질문은 수정/삭제할 수 없습니다.");
+//        }
 
         Optional.ofNullable(question.getTitle())
                 .ifPresent(title -> findQuestion.setTitle(title));
@@ -67,15 +61,15 @@ public class QuestionService {
                 .ifPresent(publicSecret -> findQuestion.setPublicSecret(publicSecret));
 
         // admin이 아닌데 "답변완료"로 바꿀 경우
-        if (!questionPatchDto.getMemberEmail().equals(ADMIN_EMAIL)){
-            if (findQuestion.getQuestionStatus().equals(QuestionStatus.QUESTION_ANSWERED)) {
-                throw new RuntimeException("답변 완료로의 변경은 관리자만 가능합니다.");
-            }
-
-            if (!findQuestion.getMember().getEmail().equals(questionPatchDto.getMemberEmail())) {
-                throw new RuntimeException("질문을 등록한 회원만 수정할 수 있습니다.");
-            }
-        }
+//        if (!questionPatchDto.getMemberEmail().equals(ADMIN_EMAIL)){
+//            if (findQuestion.getQuestionStatus().equals(QuestionStatus.QUESTION_ANSWERED)) {
+//                throw new RuntimeException("답변 완료로의 변경은 관리자만 가능합니다.");
+//            }
+//
+//            if (!findQuestion.getMember().getEmail().equals(questionPatchDto.getMemberEmail())) {
+//                throw new RuntimeException("질문을 등록한 회원만 수정할 수 있습니다.");
+//            }
+//        }
 
         Question save = questionRepository.save(findQuestion);
         return mapper.questionToQuestionResponse(save);
